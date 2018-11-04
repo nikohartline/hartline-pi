@@ -10,11 +10,10 @@ def main():
     """Shows basic usage of the Gmail API.
     Lists the user's Gmail labels.
     """
-    sys.path.insert(0,'/home/pi/credentials')
-    store = file.Storage('pi_token.json')
+    store = file.Storage('/home/pi/credentials/pi_token.json')
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('raspberrypi_gmail.json', SCOPES)
+        flow = client.flow_from_clientsecrets('/home/pi/credentials/raspberrypi_gmail.json', SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('gmail', 'v1', http=creds.authorize(Http()))
 
